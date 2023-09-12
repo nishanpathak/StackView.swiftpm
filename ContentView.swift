@@ -1,9 +1,9 @@
 import SwiftUI
 
 enum CalculatorButton: String {
-    case zero = "0", one = "1", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9"
-    case clear = "AC", plus = "+", minus = "-", multiply = "*", divide = "/", equals = "="
-    case decimal = ".", percent = "%", sign = "+/-"
+    case zero = "0", one = "1", two = "2", three = "3", four = "4", five = "5", six = "6", seven = "7", eight = "8", nine = "9", decimal = "."
+    case plus = "+", minus = "-", multiply = "*", divide = "÷", equals = "="
+    case percent = "%", sign = "+/-", clear = "AC"
 }
 
 struct ContentView: View {
@@ -22,7 +22,7 @@ struct ContentView: View {
             VStack(spacing: 12) {
                 Spacer()
                 Text("0")
-                    .font(.system(size: 69))
+                    .font(.system(size: 60))
                     .foregroundColor(.white)
                     .padding()
                     .frame(maxWidth: .infinity, alignment: .trailing)
@@ -63,7 +63,9 @@ struct CalculatorButtonView: View {
         switch button {
         case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine:
             return Color(.darkGray)
-        case .clear, .sign, .percent, .divide, .multiply, .minus, .plus, .equals:
+        case .clear, .sign, .percent:
+            return Color(.systemGray)
+        case .divide, .multiply, .minus, .plus, .equals:
             return Color(.orange)
         case .decimal:
             return Color(.darkGray)
@@ -71,21 +73,15 @@ struct CalculatorButtonView: View {
     }
     
     private func buttonWidth(button: CalculatorButton) -> CGFloat {
-        return button == .zero ? (UIScreen.main.bounds.width - 5 * 16) / 4 : (UIScreen.main.bounds.width - 5 * 16) / 15
+        return button == .zero ? (UIScreen.main.bounds.width - 5 * 20) / 4 : (UIScreen.main.bounds.width - 5 * 20) / 5
     }
     
     private func buttonHeight() -> CGFloat {
-        return (UIScreen.main.bounds.width - 5 * 16) / 15
+        return (UIScreen.main.bounds.width - 5 * 20) / 5
     }
     
     private func buttonCornerRadius(button: CalculatorButton) -> CGFloat {
-        return button == .zero ? (UIScreen.main.bounds.width - 5 * 16) / 4 : (UIScreen.main.bounds.width - 5 * 16) / 4 / 7
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        return button == .zero ? (UIScreen.main.bounds.width - 5 * 20) / 4 : (UIScreen.main.bounds.width - 5 * 20) / 5 / 2
     }
 }
 
